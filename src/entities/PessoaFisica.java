@@ -9,9 +9,9 @@ public class PessoaFisica extends Pessoa {
 	private int cpf;
 	private String rg;
 
-	public PessoaFisica(int agencia, int conta, int digito, int senha, double saldo, Endereco endereco, String email,
-			String telefone, String nome, Date dataNascimento, int cpf, String rg) {
-		super(agencia, conta, digito, senha, saldo, endereco, email, telefone);
+	public PessoaFisica(Endereco endereco, String email, String telefone, Conta conta, String nome, Date dataNascimento,
+			int cpf, String rg) {
+		super(endereco, email, telefone, conta);
 		this.nome = nome;
 		this.dataNascimento = dataNascimento;
 		this.cpf = cpf;
