@@ -7,7 +7,7 @@ public class Endereco {
 	private String estado;
 	private String numero;
 	private String complemento;
-	
+
 	public Endereco(String rua, String bairro, String cidade, String estado, String numero, String complemento) {
 		super();
 		this.rua = rua;
@@ -17,7 +17,7 @@ public class Endereco {
 		this.numero = numero;
 		this.complemento = complemento;
 	}
-	
+
 	public Endereco(String rua, String bairro, String cidade, String estado, String numero) {
 		super();
 		this.rua = rua;

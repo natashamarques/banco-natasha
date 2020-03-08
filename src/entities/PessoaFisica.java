@@ -3,12 +3,12 @@ package entities;
 import java.util.Date;
 
 public class PessoaFisica extends Pessoa {
-	
+
 	private String nome;
 	private Date dataNascimento;
 	private int cpf;
 	private String rg;
-	
+
 	public PessoaFisica(int agencia, int conta, int digito, int senha, double saldo, Endereco endereco, String email,
 			String telefone, String nome, Date dataNascimento, int cpf, String rg) {
 		super(agencia, conta, digito, senha, saldo, endereco, email, telefone);
@@ -49,6 +49,5 @@ public class PessoaFisica extends Pessoa {
 	public void setRg(String rg) {
 		this.rg = rg;
 	}
-	
-	
+
 }

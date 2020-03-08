@@ -9,7 +9,7 @@ public class Pessoa {
 	private Endereco endereco;
 	private String email;
 	private String telefone;
-	
+
 	public Pessoa(int agencia, int conta, int digito, int senha, double saldo, Endereco endereco, String email,
 			String telefone) {
 		super();
@@ -86,7 +86,5 @@ public class Pessoa {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	
-	
-	
+
 }
