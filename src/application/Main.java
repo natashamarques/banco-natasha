@@ -29,7 +29,7 @@ public class Main {
 			case 2:
 				System.out.println("Obrigado por utilizar o sistema !!!");
 			default:
-				System.out.println("Por favor informar uma opção valida !!!");
+				System.out.println("Por favor informar uma opção valida !");
 			}
 		}
 
