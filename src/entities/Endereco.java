@@ -1,6 +1,7 @@
 package entities;
 
 public class Endereco {
+	private int cep;
 	private String rua;
 	private String bairro;
 	private String cidade;
@@ -8,8 +9,10 @@ public class Endereco {
 	private String numero;
 	private String complemento;
 
-	public Endereco(String rua, String bairro, String cidade, String estado, String numero, String complemento) {
+	public Endereco(int cep, String rua, String bairro, String cidade, String estado, String numero,
+			String complemento) {
 		super();
+		this.cep = cep;
 		this.rua = rua;
 		this.bairro = bairro;
 		this.cidade = cidade;
@@ -18,8 +21,9 @@ public class Endereco {
 		this.complemento = complemento;
 	}
 
-	public Endereco(String rua, String bairro, String cidade, String estado, String numero) {
+	public Endereco(int cep, String rua, String bairro, String cidade, String estado, String numero) {
 		super();
+		this.cep = cep;
 		this.rua = rua;
 		this.bairro = bairro;
 		this.cidade = cidade;
@@ -74,4 +78,13 @@ public class Endereco {
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
 	}
+
+	public int getCep() {
+		return cep;
+	}
+
+	public void setCep(int cep) {
+		this.cep = cep;
+	}
+
 }

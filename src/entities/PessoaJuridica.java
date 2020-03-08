@@ -3,10 +3,10 @@ package entities;
 public class PessoaJuridica extends Pessoa {
 	private String razaoSocial;
 	private String nomeFantasia;
-	private int cnpj;
+	private String cnpj;
 
 	public PessoaJuridica(Endereco endereco, String email, String telefone, Conta conta, String razaoSocial,
-			String nomeFantasia, int cnpj) {
+			String nomeFantasia, String cnpj) {
 		super(endereco, email, telefone, conta);
 		this.razaoSocial = razaoSocial;
 		this.nomeFantasia = nomeFantasia;
@@ -29,11 +29,11 @@ public class PessoaJuridica extends Pessoa {
 		this.nomeFantasia = nomeFantasia;
 	}
 
-	public int getCnpj() {
+	public String getCnpj() {
 		return cnpj;
 	}
 
-	public void setCnpj(int cnpj) {
+	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
 

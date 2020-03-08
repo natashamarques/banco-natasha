@@ -6,11 +6,11 @@ public class PessoaFisica extends Pessoa {
 
 	private String nome;
 	private Date dataNascimento;
-	private int cpf;
+	private String cpf;
 	private String rg;
-
+	
 	public PessoaFisica(Endereco endereco, String email, String telefone, Conta conta, String nome, Date dataNascimento,
-			int cpf, String rg) {
+			String cpf, String rg) {
 		super(endereco, email, telefone, conta);
 		this.nome = nome;
 		this.dataNascimento = dataNascimento;
@@ -34,11 +34,11 @@ public class PessoaFisica extends Pessoa {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public int getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(int cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
@@ -48,6 +48,6 @@ public class PessoaFisica extends Pessoa {
 
 	public void setRg(String rg) {
 		this.rg = rg;
-	}
+	}	
 
 }
