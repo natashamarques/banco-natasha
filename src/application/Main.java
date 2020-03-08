@@ -44,7 +44,7 @@ public class Main {
 
 	private static void registarCliente() {
 		System.out.println();
-		System.out.println("--------- REGISTRAR CLIENTE ---------");
+		System.out.println("--------- REGISTRAR CLIENTE -------");
 		System.out.println("\nInforme o CPF/CNPJ: ");
 		String documento = sc.next();
 		if (documento.length() == 11) {
