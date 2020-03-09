@@ -21,7 +21,7 @@ public class Main {
 		populate();
 		int opcao = 0;
 
-		while (opcao != 3) {
+		while (opcao != 4) {
 			mostarMenuPrincipal();
 			opcao = sc.nextInt();
 			switch (opcao) {
@@ -32,10 +32,32 @@ public class Main {
 				listarClientes();
 				break;
 			case 3:
+				clienteLogado();
+				break;
+			case 4:
 				System.out.println("Obrigado por utilizar o sistema !!!");
 			default:
 				System.out.println("Por favor informar uma opção valida !");
 
+			}
+		}
+
+	}
+
+	private static void clienteLogado() {
+		System.out.println();
+		System.out.println("--------- CLIENTE LOGADO --------");
+		System.out.println("Informe os dados abaixo: ");
+		System.out.println("\nAgencia: ");
+		int agencia = sc.nextInt();
+		System.out.println("\nConta: ");
+		int conta = sc.nextInt();
+		System.out.println("\nSenha: ");
+		int senha = sc.nextInt();
+		for (Pessoa pessoa : pessoas) {
+			if (agencia == pessoa.getConta().getAgencia() && conta == pessoa.getConta().getConta()
+					&& senha == pessoa.getConta().getSenha()) {
+				System.out.println("Bem-vindo =)");
 			}
 		}
 
@@ -56,7 +78,6 @@ public class Main {
 				System.out.println(pessoa);
 			}
 		}
-
 	}
 
 	private static void populate() {
@@ -64,7 +85,7 @@ public class Main {
 		Endereco endereco1 = new Endereco(23456, "São felix", "Ari", "SP", "poa", "168", "1º andar");
 		Conta conta = new Conta(011, 123, 6, 123, 1000);
 		Conta conta1 = new Conta(012, 321, 7, 321, 20000);
-		PessoaFisica pessoa = new PessoaFisica(endereco1, "thiago@.com", "119123456", conta1, "Thiago", new Date(),
+		PessoaFisica pessoa = new PessoaFisica(endereco, "thiago@.com", "119123456", conta, "Thiago", new Date(),
 				"498", "1616");
 		PessoaJuridica pessoa1 = new PessoaJuridica(endereco1, "nata@hot", "1198000", conta1, "nenhuma", "Mercados",
 				"198034");
@@ -79,6 +100,8 @@ public class Main {
 		System.out.print("\nSelecione uma das opções");
 		System.out.print("\n1- Cadastrar novo cliente: ");
 		System.out.print("\n2- Listar clientes: ");
+		System.out.print("\n3- Login de usuário: ");
+		System.out.print("\n4- Sair");
 	}
 
 	private static void registarCliente() {
