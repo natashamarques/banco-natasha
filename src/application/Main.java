@@ -32,7 +32,7 @@ public class Main {
 				listarClientes();
 				break;
 			case 3:
-				clienteLogado();
+				logarCliente();
 				break;
 			case 4:
 				System.out.println("Obrigado por utilizar o sistema !!!");
@@ -44,7 +44,7 @@ public class Main {
 
 	}
 
-	private static void clienteLogado() {
+	private static void logarCliente() {
 		System.out.println();
 		System.out.println("--------- CLIENTE LOGADO --------");
 		System.out.println("Informe os dados abaixo: ");
