@@ -45,6 +45,7 @@ public class Pessoa {
 
 	public void setConta(Conta conta) {
 		this.conta = conta;
-	}	
+	}
+	
 	
 }

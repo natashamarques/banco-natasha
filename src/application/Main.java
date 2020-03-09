@@ -18,28 +18,67 @@ public class Main {
 	static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
+		populate();
 		int opcao = 0;
-		mostarMenuPrincipal();
-		opcao = sc.nextInt();
 
-		while (opcao != 2) {
+		while (opcao != 3) {
+			mostarMenuPrincipal();
+			opcao = sc.nextInt();
 			switch (opcao) {
 			case 1:
 				registarCliente();
+				break;
 			case 2:
+				listarClientes();
+				break;
+			case 3:
 				System.out.println("Obrigado por utilizar o sistema !!!");
 			default:
 				System.out.println("Por favor informar uma opção valida !");
+
 			}
 		}
 
 	}
 
+	private static void listarClientes() {
+		System.out.println();
+		System.out.println("--------- LISTAR CLIENTES -------");
+		System.out.println("--------- PESSOAS FÍSICAS -------");
+		for (Pessoa pessoa : pessoas) {
+			if (pessoa instanceof PessoaFisica) {
+				System.out.println(pessoa);
+			}
+		}
+		System.out.println("--------- PESSOAS JURIDICAS -------");
+		for (Pessoa pessoa : pessoas) {
+			if (pessoa instanceof PessoaJuridica) {
+				System.out.println(pessoa);
+			}
+		}
+
+	}
+
+	private static void populate() {
+		Endereco endereco = new Endereco(03455, "Formoselha", "Arica", "SP", "sp", "161");
+		Endereco endereco1 = new Endereco(23456, "São felix", "Ari", "SP", "poa", "168", "1º andar");
+		Conta conta = new Conta(011, 123, 6, 123, 1000);
+		Conta conta1 = new Conta(012, 321, 7, 321, 20000);
+		PessoaFisica pessoa = new PessoaFisica(endereco1, "thiago@.com", "119123456", conta1, "Thiago", new Date(),
+				"498", "1616");
+		PessoaJuridica pessoa1 = new PessoaJuridica(endereco1, "nata@hot", "1198000", conta1, "nenhuma", "Mercados",
+				"198034");
+		pessoas.add(pessoa);
+		pessoas.add(pessoa1);
+
+	}
+
 	private static void mostarMenuPrincipal() {
 		System.out.println();
-		System.out.println("--------- MENU PRINCIPAL ---------");
-		System.out.println("\nSelecione uma das opções");
-		System.out.println("\n1- Cadastrar novo cliente:");
+		System.out.print("--------- MENU PRINCIPAL ---------");
+		System.out.print("\nSelecione uma das opções");
+		System.out.print("\n1- Cadastrar novo cliente: ");
+		System.out.print("\n2- Listar clientes: ");
 	}
 
 	private static void registarCliente() {
@@ -49,13 +88,12 @@ public class Main {
 		String documento = sc.next();
 		if (documento.length() == 11) {
 			cadastrarPessoaFisica(documento);
-		} 
-		else if(documento.length() == 14) { 
+		} else if (documento.length() == 14) {
 			cadastrarPessoaJuridica(documento);
-		} else { 
+		} else {
 			System.out.print("Numero de documento invalido");
 		}
-		
+
 	}
 
 	private static void cadastrarPessoaJuridica(String cnpj) {
@@ -120,11 +158,11 @@ public class Main {
 			String complemento = sc.next();
 			return new Endereco(cep, rua, bairro, cidade, estado, numero, complemento);
 
-		} else { 
+		} else {
 			return new Endereco(cep, rua, bairro, cidade, estado, numero);
 		}
 	}
-	
+
 	private static Conta criarNovaConta() {
 		System.out.print("Informe os dados abaixo: ");
 		System.out.print("\nAgencia: ");
