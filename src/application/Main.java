@@ -58,8 +58,54 @@ public class Main {
 			if (agencia == pessoa.getConta().getAgencia() && conta == pessoa.getConta().getConta()
 					&& senha == pessoa.getConta().getSenha()) {
 				System.out.println("Bem-vindo =)");
+				mostrarMenuLogado(pessoa);
 			}
 		}
+
+	}
+
+	private static void mostrarMenuLogado(Pessoa pessoa) {
+		System.out.println();
+		System.out.print("--------- MENU DO USUÁRIO ---------");
+		int opcao = 0;
+		while (opcao != 4) {
+			System.out.println("1- Fazer transferencia" + "\n2- Fazer deposito" + "\n3- Ver saldo" + "\n4- Sair");
+			opcao = sc.nextInt();
+			switch (opcao) {
+			case 1:
+				fazerTransferencia(pessoa);
+				break;
+			case 2:
+				fazerDeposito(pessoa);
+				break;
+			case 3:
+				verSaldo(pessoa);
+				break;
+			case 4:
+				System.out.println("Obrigado por utilizar o caixa =)");
+			}
+		}
+
+	}
+
+	private static void verSaldo(Pessoa pessoa) {
+		System.out.println();
+		System.out.print("--------- VER SALDO ---------");
+		if (pessoa instanceof PessoaFisica) {
+			System.out
+					.println(((PessoaFisica) pessoa).getNome() + " o seu saldo é de: " + pessoa.getConta().getSaldo());
+		} else {
+			System.out.println(((PessoaJuridica) pessoa).getRazaoSocial() + " o seu saldo é de: " + pessoa.getConta().getSaldo());
+		}
+
+	}
+
+	private static void fazerDeposito(Pessoa pessoa) {
+		// TODO Auto-generated method stub
+
+	}
+
+	private static void fazerTransferencia(Pessoa pessoa) {
 
 	}
 
@@ -85,8 +131,8 @@ public class Main {
 		Endereco endereco1 = new Endereco(23456, "São felix", "Ari", "SP", "poa", "168", "1º andar");
 		Conta conta = new Conta(011, 123, 6, 123, 1000);
 		Conta conta1 = new Conta(012, 321, 7, 321, 20000);
-		PessoaFisica pessoa = new PessoaFisica(endereco, "thiago@.com", "119123456", conta, "Thiago", new Date(),
-				"498", "1616");
+		PessoaFisica pessoa = new PessoaFisica(endereco, "thiago@.com", "119123456", conta, "Thiago", new Date(), "498",
+				"1616");
 		PessoaJuridica pessoa1 = new PessoaJuridica(endereco1, "nata@hot", "1198000", conta1, "nenhuma", "Mercados",
 				"198034");
 		pessoas.add(pessoa);
