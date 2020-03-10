@@ -95,17 +95,23 @@ public class Main {
 			System.out
 					.println(((PessoaFisica) pessoa).getNome() + " o seu saldo é de: " + pessoa.getConta().getSaldo());
 		} else {
-			System.out.println(((PessoaJuridica) pessoa).getRazaoSocial() + " o seu saldo é de: " + pessoa.getConta().getSaldo());
+			System.out.println(
+					((PessoaJuridica) pessoa).getRazaoSocial() + " o seu saldo é de: " + pessoa.getConta().getSaldo());
 		}
 
 	}
 
 	private static void fazerDeposito(Pessoa pessoa) {
-		// TODO Auto-generated method stub
-
+		System.out.println();
+		System.out.print("--------- FAZER DEPOSITO ---------");
+		System.out.println("Qual o valor deseja depositar na sua conta? ");
+		double valor = sc.nextDouble();
+		pessoa.getConta().setSaldo(pessoa.getConta().getSaldo() + valor);
+		System.out.println("Deposito realizado com sucesso =)");
 	}
 
 	private static void fazerTransferencia(Pessoa pessoa) {
+		
 
 	}
 
