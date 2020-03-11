@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.Scanner;
 import java.util.logging.SimpleFormatter;
 
+import entities.Boleto;
 import entities.Conta;
 import entities.Endereco;
 import entities.Pessoa;
@@ -15,6 +16,7 @@ import entities.PessoaJuridica;
 
 public class Main {
 	static ArrayList<Pessoa> pessoas = new ArrayList<Pessoa>();
+	static ArrayList<Boleto> boletos = new ArrayList<Boleto>();
 	static Scanner sc = new Scanner(System.in);
 
 	public static void main(String[] args) {
@@ -69,7 +71,8 @@ public class Main {
 		System.out.print("--------- MENU DO USUÁRIO ---------");
 		int opcao = 0;
 		while (opcao != 4) {
-			System.out.println("1- Fazer transferencia" + "\n2- Fazer deposito" + "\n3- Ver saldo" + "\n4- Sair");
+			System.out.println("1- Fazer transferencia" + "\n2- Fazer deposito" + "\n3- Ver saldo"
+					+ "\n4- Fazer pagamento de boleto" + "\n5- Sair");
 			opcao = sc.nextInt();
 			switch (opcao) {
 			case 1:
@@ -82,8 +85,34 @@ public class Main {
 				verSaldo(pessoa);
 				break;
 			case 4:
+				fazerPagamentoBoleto(pessoa);
+				break;
+			case 5:
 				System.out.println("Obrigado por utilizar o caixa =)");
 			}
+		}
+
+	}
+
+	private static void fazerPagamentoBoleto(Pessoa pessoa) {
+		System.out.println();
+		System.out.print("--------- FAZER PAGAMENTO DE BOLETO ---------");
+		System.out.println("Digite o codigo do boleto");
+		String codigoBarras = sc.next();
+		if (codigoBarras.length() == 20) {
+			for (Boleto boleto : boletos) {
+				if (codigoBarras.equals(boleto.getCodigoBarras())) {
+					if (boleto.isBoletoVencido()) {
+						pessoa.getConta()
+								.setSaldo(pessoa.getConta().getSaldo() - (boleto.getValorBoleto() + boleto.getJuros()));
+					} else {
+						pessoa.getConta().setSaldo(pessoa.getConta().getSaldo() - boleto.getValorBoleto());
+					}
+				}
+			}
+
+		} else {
+			System.out.println("Boleto invalido");
 		}
 
 	}
@@ -175,6 +204,15 @@ public class Main {
 				"198034");
 		pessoas.add(pessoa);
 		pessoas.add(pessoa1);
+		Boleto boleto1 = new Boleto("12345678912345678912", 200, false);
+		Boleto boleto2 = new Boleto("12345678941345578911", 150, false);
+		Boleto boleto3 = new Boleto("12345524541412312366", 400, true, 100);
+		Boleto boleto4 = new Boleto("13412312366234123125", 184, true, 140);
+
+		boletos.add(boleto1);
+		boletos.add(boleto2);
+		boletos.add(boleto3);
+		boletos.add(boleto4);
 
 	}
 
