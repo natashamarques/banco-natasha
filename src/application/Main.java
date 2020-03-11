@@ -111,7 +111,39 @@ public class Main {
 	}
 
 	private static void fazerTransferencia(Pessoa pessoa) {
-		
+		System.out.println();
+		System.out.print("--------- FAZER TRANSFERENCIA ---------");
+		System.out.println("\nInforme o CPF/CNPJ da Pessoa que deseja transferir: ");
+		String documento = sc.next();
+		if (documento.length() == 11) {
+			for (Pessoa pessoaDestinatario : pessoas) {
+				if (pessoaDestinatario instanceof PessoaFisica) {
+					if (((PessoaFisica) pessoaDestinatario).getCpf().equals(documento)) {
+						System.out.println("Qual o valor que deseja transferir? ");
+						double valor = sc.nextDouble();
+						pessoa.getConta().setSaldo(pessoa.getConta().getSaldo() - valor);
+						pessoaDestinatario.getConta().setSaldo(pessoaDestinatario.getConta().getSaldo() + valor);
+					}
+				}
+			}
+		}
+
+		else if (documento.length() == 14) {
+			for (Pessoa pessoaDestinatario : pessoas) {
+				if (pessoaDestinatario instanceof PessoaJuridica) {
+					if (((PessoaJuridica) pessoaDestinatario).getCnpj().equals(documento)) {
+						System.out.println("Qual o valor que deseja transferir? ");
+						double valor = sc.nextDouble();
+						pessoa.getConta().setSaldo(pessoa.getConta().getSaldo() - valor);
+						pessoaDestinatario.getConta().setSaldo(pessoaDestinatario.getConta().getSaldo() + valor);
+
+					}
+				}
+			}
+
+		} else {
+			System.out.println("Invalido");
+		}
 
 	}
 
