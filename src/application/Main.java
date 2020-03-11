@@ -119,6 +119,28 @@ public class Main {
 				alterarEndereco(pessoa);
 				break;
 			}
+		} else if (pessoa instanceof PessoaJuridica) {
+			System.out.println("Menu de alteções cadastrais" + "\n1- Nome Fantasia" + "\n2- Telefone" + "\n3- Email"
+					+ "\n4- Endereço");
+			int opcao = sc.nextInt();
+			switch(opcao) {
+			case 1:
+				System.out.println("Digite o novo nome fantasia: " + ((PessoaJuridica)pessoa).getNomeFantasia());
+				String nomeFantasia = sc.next();
+				((PessoaJuridica)pessoa).setNomeFantasia(nomeFantasia);
+				break;
+			case 2:
+				alterarTelefone(pessoa);
+				break;
+			case 3:
+				alterarEmail(pessoa);
+				break;
+			case 4:
+				alterarEndereco(pessoa);
+				break;
+			}
+			
+		
 		}
 
 	}
@@ -148,12 +170,17 @@ public class Main {
 		if (codigoBarras.length() == 20) {
 			for (Boleto boleto : boletos) {
 				if (codigoBarras.equals(boleto.getCodigoBarras())) {
-					if (boleto.isBoletoVencido()) {
-						pessoa.getConta()
-								.setSaldo(pessoa.getConta().getSaldo() - (boleto.getValorBoleto() + boleto.getJuros()));
+					if(pessoa.getConta().getSaldo() >= boleto.getValorBoleto()) {
+						if (boleto.isBoletoVencido()) {
+							pessoa.getConta()
+									.setSaldo(pessoa.getConta().getSaldo() - (boleto.getValorBoleto() + boleto.getJuros()));
+						} else {
+							pessoa.getConta().setSaldo(pessoa.getConta().getSaldo() - boleto.getValorBoleto());
+						}
 					} else {
-						pessoa.getConta().setSaldo(pessoa.getConta().getSaldo() - boleto.getValorBoleto());
+						System.out.println("Saldo insuficiente para realizar o pagamento");
 					}
+					
 				}
 			}
 
@@ -196,8 +223,12 @@ public class Main {
 					if (((PessoaFisica) pessoaDestinatario).getCpf().equals(documento)) {
 						System.out.println("Qual o valor que deseja transferir? ");
 						double valor = sc.nextDouble();
-						pessoa.getConta().setSaldo(pessoa.getConta().getSaldo() - valor);
-						pessoaDestinatario.getConta().setSaldo(pessoaDestinatario.getConta().getSaldo() + valor);
+						if (pessoa.getConta().getSaldo() >= valor) {
+							pessoa.getConta().setSaldo(pessoa.getConta().getSaldo() - valor);
+							pessoaDestinatario.getConta().setSaldo(pessoaDestinatario.getConta().getSaldo() + valor);
+						} else {
+							System.out.println("Voce não possui saldo suficiente");
+						}
 					}
 				}
 			}
@@ -209,9 +240,12 @@ public class Main {
 					if (((PessoaJuridica) pessoaDestinatario).getCnpj().equals(documento)) {
 						System.out.println("Qual o valor que deseja transferir? ");
 						double valor = sc.nextDouble();
-						pessoa.getConta().setSaldo(pessoa.getConta().getSaldo() - valor);
-						pessoaDestinatario.getConta().setSaldo(pessoaDestinatario.getConta().getSaldo() + valor);
-
+						if (pessoa.getConta().getSaldo() >= valor) {
+							pessoa.getConta().setSaldo(pessoa.getConta().getSaldo() - valor);
+							pessoaDestinatario.getConta().setSaldo(pessoaDestinatario.getConta().getSaldo() + valor);
+						} else {
+							System.out.println("Voce não possui saldo suficiente");
+						}
 					}
 				}
 			}
