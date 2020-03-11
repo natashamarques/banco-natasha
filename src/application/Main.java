@@ -70,9 +70,9 @@ public class Main {
 		System.out.println();
 		System.out.print("--------- MENU DO USUÁRIO ---------");
 		int opcao = 0;
-		while (opcao != 4) {
+		while (opcao != 6) {
 			System.out.println("1- Fazer transferencia" + "\n2- Fazer deposito" + "\n3- Ver saldo"
-					+ "\n4- Fazer pagamento de boleto" + "\n5- Sair");
+					+ "\n4- Fazer pagamento de boleto" + "\n5- Alterações Cadastrais" + "\n6- Sair");
 			opcao = sc.nextInt();
 			switch (opcao) {
 			case 1:
@@ -88,10 +88,56 @@ public class Main {
 				fazerPagamentoBoleto(pessoa);
 				break;
 			case 5:
+				alteracoesCadastrais(pessoa);
+				break;
+			case 6:
 				System.out.println("Obrigado por utilizar o caixa =)");
 			}
 		}
 
+	}
+
+	private static void alteracoesCadastrais(Pessoa pessoa) {
+		System.out.println();
+		System.out.print("--------- FAZER ALTERAÇÕES CADASTRAIS ---------");
+		if (pessoa instanceof PessoaFisica) {
+			System.out.println("Menu de alteções cadastrais PF" + "\n1- Alterar Nome" + "\n2- Telefone" + "\n3- Email"
+					+ "\n4- Endereço");
+			int opcao = sc.nextInt();
+			switch (opcao) {
+			case 1:
+				System.out.println("Digite seu novo nome: " + ((PessoaFisica) pessoa).getNome());
+				String nome = sc.next();
+				((PessoaFisica) pessoa).setNome(nome);
+			case 2:
+				alterarTelefone(pessoa);
+				break;
+			case 3:
+				alterarEmail(pessoa);
+				break;
+			case 4:
+				alterarEndereco(pessoa);
+				break;
+			}
+		}
+
+	}
+
+	private static void alterarEndereco(Pessoa pessoa) {
+		System.out.println("Digite seu novo endereço: ");
+		pessoa.setEndereco(criarNovoEndereco());
+	}
+
+	private static void alterarEmail(Pessoa pessoa) {
+		System.out.println("Digite o novo email: ");
+		String email = sc.next();
+		pessoa.setEmail(email);
+	}
+
+	private static void alterarTelefone(Pessoa pessoa) {
+		System.out.println("Digite o novo numero de telefone: ");
+		String telefone = sc.next();
+		pessoa.setTelefone(telefone);
 	}
 
 	private static void fazerPagamentoBoleto(Pessoa pessoa) {
